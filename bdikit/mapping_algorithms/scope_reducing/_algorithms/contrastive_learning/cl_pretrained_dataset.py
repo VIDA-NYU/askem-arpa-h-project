@@ -34,11 +34,9 @@ class PretrainTableDataset(data.Dataset):
             )  # from preprocessor.py
             col_text = (
                 self.tokenizer.cls_token
-                + " "
                 + column
-                + " self.tokenizer.sep_token "
-                + " ".join(tokens[:max_tokens])
-                + " "
+                + self.tokenizer.sep_token
+                + self.tokenizer.sep_token.join(tokens[:max_tokens])
             )
             column_mp[column] = len(res)
             res += self.tokenizer.encode(
